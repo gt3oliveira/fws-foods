@@ -31,7 +31,7 @@ model Category {
 model Product {
   id                 String  @id @default(uuid())
   name               String
-  descritption       String
+  description        String
   imageUrl           String
   price              Decimal @db.Decimal(10, 2)
   discountPercentage Int     @default(0)
