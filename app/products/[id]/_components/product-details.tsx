@@ -49,7 +49,7 @@ export function ProductDetails({
   }
 
   return (
-    <div className="pb-5">
+    <div className="relative z-10 -mt-6 rounded-tl-3xl rounded-tr-3xl bg-white pb-5">
       <div className="p-5">
         {/* RESTAURANTE */}
         <div className="flex items-center gap-[0.375rem]">
