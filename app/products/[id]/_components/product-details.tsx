@@ -49,7 +49,7 @@ export function ProductDetails({
   }
 
   return (
-    <>
+    <div className="pb-5">
       <div className="p-5">
         {/* RESTAURANTE */}
         <div className="flex items-center gap-[0.375rem]">
@@ -147,6 +147,6 @@ export function ProductDetails({
         <h3 className="px-5 font-semibold">Sucos</h3>
         <ProductList products={complementaryProducts} />
       </div>
-    </>
+    </div>
   );
 }
