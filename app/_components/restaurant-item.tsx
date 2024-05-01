@@ -3,6 +3,7 @@ import { BikeIcon, HeartIcon, StarIcon, TimerIcon } from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "../_helpers/price";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
@@ -10,7 +11,10 @@ interface RestaurantItemProps {
 
 export function RestaurantItem({ restaurant }: RestaurantItemProps) {
   return (
-    <section className="min-w-[266px] max-w-[266px] space-y-3">
+    <Link
+      href={`/restaurants/${restaurant.id}`}
+      className="min-w-[266px] max-w-[266px] space-y-3"
+    >
       <div className="relative h-[136px] w-full">
         <Image
           src={restaurant.imageUrl}
@@ -53,6 +57,6 @@ export function RestaurantItem({ restaurant }: RestaurantItemProps) {
           </div>
         </div>
       </div>
-    </section>
+    </Link>
   );
 }
