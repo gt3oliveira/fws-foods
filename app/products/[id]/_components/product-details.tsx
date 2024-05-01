@@ -127,14 +127,9 @@ export function ProductDetails({
               <span className="text-xs">Tempo</span>
               <TimerIcon size={14} />
             </div>
-            {Number(product.restaurant.deliveryFee) > 0 ? (
-              <p className="text-xs font-semibold">
-                {/* {formatCurrency(Number(product.restaurant.deliveryFee))} */}
-                {product.restaurant.deliveryTimeMinutes} min
-              </p>
-            ) : (
-              <p className="text-xs font-semibold">Grátis</p>
-            )}
+            <p className="text-xs font-semibold">
+              {product.restaurant.deliveryTimeMinutes} min
+            </p>
           </div>
         </Card>
 
