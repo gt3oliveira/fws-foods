@@ -3,6 +3,16 @@ import { Cart } from "@/app/_components/cart";
 import { DeliveryInfo } from "@/app/_components/delivery-info";
 import { DiscoutBadge } from "@/app/_components/discount-badge";
 import { ProductList } from "@/app/_components/product-list";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/app/_components/ui/alert-dialog";
 import { Button } from "@/app/_components/ui/button";
 import {
   Sheet,
@@ -37,13 +47,29 @@ export function ProductDetails({
   product,
   complementaryProducts,
 }: ProductDetailsProps) {
-  const { addProductToCart } = useContext(CartContext);
+  const { addProductToCart, products } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
+    useState(false);
+
+  function addToCart({ emptyCart }: { emptyCart?: boolean }) {
+    addProductToCart({ product, quantity, emptyCart });
+    setIsCartOpen(true);
+  }
 
   function handleAddToCartClick() {
-    addProductToCart(product, quantity);
-    setIsCartOpen(true);
+    const hasDifferentRestaurantProduct = products.some(
+      (cartProduct) => cartProduct.restaurantId !== product.restaurantId,
+    );
+
+    if (hasDifferentRestaurantProduct) {
+      return setIsConfirmationDialogOpen(true);
+    }
+
+    addToCart({
+      emptyCart: false,
+    });
   }
 
   function handleIncreaseQuantityClick() {
@@ -150,6 +176,32 @@ export function ProductDetails({
           <Cart />
         </SheetContent>
       </Sheet>
+
+      <AlertDialog
+        open={isConfirmationDialogOpen}
+        onOpenChange={setIsConfirmationDialogOpen}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Deseja apagar sua sacola?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Você não pode realizar um pedido em um restaurante diferente do
+              atual. Isso limpará seu sacola.
+              <br />
+              <br />
+              Deseja adicionar seu pedido no restaurante escolhido?
+              <br />
+              <strong>{product.restaurant.name}</strong>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Voltar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => addToCart({ emptyCart: true })}>
+              Esvaziar sacola e adicionar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }
