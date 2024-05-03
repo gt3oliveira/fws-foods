@@ -18,6 +18,7 @@ model Restaurant {
   deliveryTimeMinutes Int
   categories          Category[]
   products            Product[]
+  orders              Order[]
 }
 
 model Category {
@@ -37,9 +38,35 @@ model Product {
   discountPercentage Int     @default(0)
   restaurantId       String
   categoryId         String
+  orders             Order[]
 
   restaurant Restaurant @relation(fields: [restaurantId], references: [id])
   category   Category   @relation(fields: [categoryId], references: [id])
+}
+
+model Order {
+  id                  String      @id @default(uuid())
+  deliveryFee         Decimal     @db.Decimal(10, 2)
+  deliveryTimeMinutes Int
+  totalPrice          Decimal     @db.Decimal(10, 2)
+  subTotalPrice       Decimal     @db.Decimal(10, 2)
+  totalDiscount       Decimal     @db.Decimal(10, 2)
+  createdAt           DateTime    @default(now())
+  userId              String
+  restaurantId        String
+  status              OrderStatus
+  products            Product[]
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+  user       User       @relation(fields: [userId], references: [id])
+}
+
+enum OrderStatus {
+  CONFIRMED
+  CANCELED
+  PREPARING
+  DELIVERING
+  COMPLETED
 }
 
 model Account {
@@ -80,6 +107,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  orders        Order[]
 
   @@map("users")
 }

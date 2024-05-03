@@ -26,7 +26,7 @@ export function Header() {
   const { data, status } = useSession();
 
   const handleSingOutClick = () => signOut();
-  const handleSingInClick = () => signIn();
+  const handleSingInClick = () => signIn("google");
 
   return (
     <div className="flex justify-between px-5 pt-6">
