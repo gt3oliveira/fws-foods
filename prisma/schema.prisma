@@ -11,14 +11,24 @@ datasource db {
 }
 
 model Restaurant {
-  id                  String     @id @default(uuid())
+  id                  String                    @id @default(uuid())
   name                String
   imageUrl            String
-  deliveryFee         Decimal    @db.Decimal(10, 2)
+  deliveryFee         Decimal                   @db.Decimal(10, 2)
   deliveryTimeMinutes Int
   categories          Category[]
   products            Product[]
   orders              Order[]
+  usersFavourited     UserFavouriteRestaurant[]
+}
+
+model UserFavouriteRestaurant {
+  userId       String
+  user         User       @relation(fields: [userId], references: [id])
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+
+  @@id([userId, restaurantId])
 }
 
 model Category {
@@ -79,6 +89,20 @@ enum OrderStatus {
   COMPLETED
 }
 
+model User {
+  id                   String                    @id @default(cuid())
+  name                 String?
+  email                String?                   @unique
+  emailVerified        DateTime?                 @map("email_verified")
+  image                String?
+  accounts             Account[]
+  sessions             Session[]
+  orders               Order[]
+  favouriteRestaurants UserFavouriteRestaurant[]
+
+  @@map("users")
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String  @map("user_id")
@@ -107,19 +131,6 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  orders        Order[]
-
-  @@map("users")
 }
 
 model VerificationToken {
