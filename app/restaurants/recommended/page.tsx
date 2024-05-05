@@ -3,7 +3,11 @@ import { RestaurantItem } from "@/app/_components/restaurant-item";
 import { db } from "@/app/_lib/prisma";
 
 export default async function RecommendedRestaurants() {
-  const restaurants = await db.restaurant.findMany();
+  const restaurants = await db.restaurant.findMany({
+    include: {
+      usersFavourited: true,
+    },
+  });
 
   return (
     <>
@@ -17,6 +21,7 @@ export default async function RecommendedRestaurants() {
             <RestaurantItem
               key={restaurant.id}
               restaurant={restaurant}
+              userFavouriteRestaurants={restaurant.usersFavourited}
               className="min-w-full max-w-full"
             />
           ))}

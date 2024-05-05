@@ -24,6 +24,9 @@ export default async function MyOrdersPage() {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   return (

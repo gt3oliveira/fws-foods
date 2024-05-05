@@ -20,6 +20,7 @@ import {
 } from "./ui/alert-dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface CartProps {
   // eslint-disable-next-line no-unused-vars
@@ -67,6 +68,7 @@ export function Cart({ setIsOpen }: CartProps) {
 
       clearCart();
       setIsOpen(false);
+      router.push("/");
 
       toast("Pedido finalizado com sucesso!", {
         description: "Você pode acompanhá-los na tela dos seus pedidos.",
@@ -87,7 +89,7 @@ export function Cart({ setIsOpen }: CartProps) {
       <div className="flex h-full flex-col py-5">
         {products.length > 0 ? (
           <>
-            <div className="flex-auto space-y-4">
+            <div className="flex-auto space-y-4 overflow-hidden overflow-y-scroll [&::-webkit-scrollbar]:hidden">
               {products.map((product) => (
                 <CartItem key={product.id} cartProduct={product} />
               ))}
@@ -134,7 +136,17 @@ export function Cart({ setIsOpen }: CartProps) {
             </div>
 
             <Button
-              className="mt-6 w-full"
+              className={`mt-6 w-full bg-muted-foreground ${isSubmitLoading && "cursor-not-allowed"}`}
+              disabled={isSubmitLoading}
+              asChild
+            >
+              <Link href={`/restaurants/${products[0].restaurantId}`}>
+                Adicionar mais item
+              </Link>
+            </Button>
+
+            <Button
+              className="mt-2 w-full"
               disabled={isSubmitLoading}
               onClick={() => setisConfirmDialogOpen(true)}
             >

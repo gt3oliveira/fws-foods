@@ -6,9 +6,9 @@ import { formatCurrency } from "../_helpers/price";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { cn } from "../_lib/utils";
-import { toggleFavoriteRestaurant } from "../_actions/restaurant";
-import { toast } from "sonner";
 import { useSession } from "next-auth/react";
+import { isRestaurantFavorited } from "../_helpers/restaurant";
+import { useToggleFavoriteRestaurant } from "../_hooks/toggle-favorite-restaurant";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
@@ -22,24 +22,17 @@ export function RestaurantItem({
   userFavouriteRestaurants,
 }: RestaurantItemProps) {
   const { data } = useSession();
-  const isFavorite = userFavouriteRestaurants.some(
-    (fav) => fav.restaurantId === restaurant.id,
+
+  const isFavorite = isRestaurantFavorited(
+    restaurant.id,
+    userFavouriteRestaurants,
   );
 
-  async function handleFavoriteClick() {
-    if (!data?.user.id) return;
-
-    try {
-      await toggleFavoriteRestaurant(data.user.id, restaurant.id);
-      toast.success(
-        isFavorite
-          ? "Restaurante removido dos favoritos!"
-          : "Restaurante favoritado com sucesso!",
-      );
-    } catch (error) {
-      toast.warning("Este restaurante já está favoritado.");
-    }
-  }
+  const { handleFavoriteClick } = useToggleFavoriteRestaurant({
+    restaurantId: restaurant.id,
+    userId: data?.user.id,
+    restaurantIsFavorited: isFavorite,
+  });
 
   return (
     <div className={cn("min-w-[266px] max-w-[266px] space-y-3", className)}>
