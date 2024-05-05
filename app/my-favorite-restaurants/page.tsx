@@ -32,7 +32,7 @@ export default async function MyFavoriteRestaurants() {
             userFavoriteRestaurants.map(({ restaurant }) => (
               <RestaurantItem
                 key={restaurant.id}
-                restaurant={restaurant}
+                restaurant={JSON.parse(JSON.stringify(restaurant))}
                 userFavouriteRestaurants={userFavoriteRestaurants}
                 className="min-w-full max-w-full"
               />

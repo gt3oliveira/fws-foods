@@ -148,7 +148,9 @@ export function ProductDetails({
           </div>
 
           {/* DADOS DA ENTREGA */}
-          <DeliveryInfo restaurant={product.restaurant} />
+          <DeliveryInfo
+            restaurant={JSON.parse(JSON.stringify(product.restaurant))}
+          />
 
           <div className="mt-6 space-y-3">
             <h3 className="font-semibold">Sobre</h3>

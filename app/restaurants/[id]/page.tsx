@@ -71,7 +71,7 @@ export default async function RestaurantPage({
   return (
     <div className="pb-5">
       <RestaurantImage
-        restaurant={restaurant}
+        restaurant={JSON.parse(JSON.stringify(restaurant))}
         userFavouriteRestaurants={userFavouriteRestaurants}
       />
       <div className="relative z-10 -mt-6 rounded-tl-3xl rounded-tr-3xl bg-white px-5">
@@ -94,7 +94,7 @@ export default async function RestaurantPage({
           </div>
         </div>
 
-        <DeliveryInfo restaurant={restaurant} />
+        <DeliveryInfo restaurant={JSON.parse(JSON.stringify(restaurant))} />
 
         <div className="mt-3 flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {restaurant.categories.map((category) => (
@@ -124,7 +124,7 @@ export default async function RestaurantPage({
         </>
       ))}
 
-      <CartBanner restaurant={restaurant} />
+      <CartBanner restaurant={JSON.parse(JSON.stringify(restaurant))} />
     </div>
   );
 }
