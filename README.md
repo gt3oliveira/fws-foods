@@ -47,6 +47,7 @@ Dê uma olhada nas seguintes tecnologias utilizadas no projeto:
   &nbsp;&nbsp;<img width="137" height="297" src="./github/images/search-restaurants-page.png" />&nbsp;&nbsp;
 </div>
 
+##
 - Categorias (pizzas, burgers, sobremesas...)
 <div style="display: inline">
   &nbsp;&nbsp;<img width="137" height="297" src="./github/images/category-page.png" />&nbsp;&nbsp;
