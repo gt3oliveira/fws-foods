@@ -1,8 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Este é um projeto [Next.js](https://nextjs.org/) iniciado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## 👨🏻‍💻 Começando...
 
-First, run the development server:
+Primeiro, execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
@@ -14,23 +14,55 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o projeto.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 👀 Saiba Mais...
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Dê uma olhada nas seguintes tecnologias utilizadas no projeto:
 
-## Learn More
+✔ [Next Auth](https://next-auth.js.org/getting-started/example) - clique e conheça mais sobre essa solução completa de autenticação de código aberto para aplicativos Next.js.
 
-To learn more about Next.js, take a look at the following resources:
+✔ [shadcn/ui](https://ui.shadcn.com/docs) - Componentes projetados que você pode copiar e colar em seus aplicativos. Acessível. Customizável. Código aberto.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+✔ [Prisma](https://www.prisma.io/docs/getting-started) - É um ORM Node.js e TypeScript de última geração que abre um novo nível de experiência do desenvolvedor ao trabalhar com bancos de dados graças ao seu modelo de dados intuitivo, migrações automatizadas, segurança de tipo e preenchimento automático.
 
-## Deploy on Vercel
+✔ [Tailwind](https://tailwindcss.com/docs/installation) - Verifica todos os seus arquivos HTML, componentes JavaScript e quaisquer outros modelos em busca de nomes de classes, gerando os estilos correspondentes e depois gravando-os em um arquivo CSS estático.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📱 Layouts do projeto
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Home e menu do usuário
+
+<div style="display: inline">
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/home-page.png" />&nbsp;&nbsp;
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/user-page.png" />&nbsp;&nbsp;
+</div>
+
+##
+- Restaurante, restaurantes recomendados e a busca de restaurante
+
+<div style="display: inline">
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/restaurant-page.png" />&nbsp;&nbsp;
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/products-recommended-page.png" />&nbsp;&nbsp;
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/search-restaurants-page.png" />&nbsp;&nbsp;
+</div>
+
+- Categorias (pizzas, burgers, sobremesas...)
+<div style="display: inline">
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/category-page.png" />&nbsp;&nbsp;
+</div>
+
+##
+- Produto e produtos recomendados
+
+<div style="display: inline">
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/product-page.png" />&nbsp;&nbsp;
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/products-recommended-page.png" />&nbsp;&nbsp;  
+</div>
+
+##
+- Sacola e meus pedidos
+<div style="display: inline">
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/sacola-page.png" />&nbsp;&nbsp;
+  &nbsp;&nbsp;<img width="137" height="297" src="./github/images/orders-page.png" />&nbsp;&nbsp;
+</div>
